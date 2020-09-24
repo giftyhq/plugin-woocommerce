@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/giftyhq/plugin-woocommerce
  * Description: WordPress plugin for accepting Gifty gift cards in your WooCommerce shop.
  * Domain Path: /languages
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Gifty B.V.
  * Author URI: https://gifty.nl
  * License: GPLv2 or later
