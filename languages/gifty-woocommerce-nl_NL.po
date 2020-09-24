@@ -1,77 +1,83 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Gifty for WooCommerce\n"
-"POT-Creation-Date: 2020-09-03 16:26+0200\n"
-"PO-Revision-Date: 2020-09-03 16:54+0200\n"
+"POT-Creation-Date: 2020-09-24 14:13+0200\n"
+"PO-Revision-Date: 2020-09-24 14:15+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: gifty-woocommerce.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Last-Translator: \n"
-"Language: nl_NL\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: app/wc-integration-gifty.php:28
+#: gifty-woocommerce.php:62
+#, php-format
+msgid ""
+"Gifty for WooCommerce requires WooCommerce to be installed and active. You "
+"can download %s here."
+msgstr ""
+"Gifty voor WooCommerce vereist dat WooCommerce wordt geïnstalleerd en actief "
+"is. Je kunt %s hier downloaden."
+
+#: gifty-woocommerce.php:72
+msgid "Settings"
+msgstr "Instellingen"
+
+#: inc/WC_Integration_Gifty.php:27
 msgid "Gifty"
 msgstr "Gifty"
 
-#: app/wc-integration-gifty.php:29
+#: inc/WC_Integration_Gifty.php:28
 msgid "Accept Gifty gift cards in your WooCommerce shop."
 msgstr "Accepteer Gifty cadeaubonnen in je WooCommerce-shop."
 
-#: app/wc-integration-gifty.php:71
+#: inc/WC_Integration_Gifty.php:65
 msgid "API Key"
 msgstr "API sleutel"
 
-#: app/wc-integration-gifty.php:73
+#: inc/WC_Integration_Gifty.php:68
 msgid ""
 "Enter your API Key. You can manage API-keys in your Gifty dashboard under "
 "the Developer options."
 msgstr ""
-"Voer je API-sleutel in. Je kunt API-sleutels beheren in jouw Gifty-"
-"dashboard op de instellingenpagina voor ontwikkelaars."
+"Voer je API-sleutel in. Je kunt API-sleutels beheren in jouw Gifty-dashboard "
+"op de instellingenpagina voor ontwikkelaars."
 
-#: app/wc-integration-gifty.php:78
-msgid "Developer options"
-msgstr "Ontwikkelaarsopties"
-
-#: app/wc-integration-gifty.php:80
-msgid "Enable testing"
-msgstr "Testmodus inschakelen"
-
-#: app/wc-integration-gifty.php:82
-msgid ""
-"Your API-calls will be faked for testing purposes. Do not enable this in "
-"production."
-msgstr ""
-"Je API-oproepen worden gesimuleerd voor testdoeleinden. Schakel dit niet "
-"in als de website toegankelijk is voor bezoekers."
-
-#: app/wc-integration-gifty.php:101
+#: inc/WC_Integration_Gifty.php:89
 msgid "The API-key is invalid."
 msgstr "De API-sleutel is ongeldig."
 
-#: app/wc-integration-gifty.php:176
+#: inc/WC_Integration_Gifty.php:165
 msgid "The used gift card is not valid anymore. Please try again."
 msgstr "De gebruikte cadeaubon is niet meer geldig. Probeer het opnieuw."
 
-#: app/wc-integration-gifty.php:246
+#: inc/WC_Integration_Gifty.php:234
+#, php-format
+msgid ""
+"The used gift card (%s) on order (%s) cannot be retrieved from the API. The "
+"gift card is not redeemed."
+msgstr ""
+"De gebruikte cadeaubon (%s) voor bestelling (%s) kan niet worden opgehaald "
+"via de API. De cadeaubon is niet verzilverd."
+
+#: inc/WC_Integration_Gifty.php:254
 #, php-format
 msgid "Reserved %s on gift card %s with transaction %s"
 msgstr "Er is %s gereserveerd op cadeaubon %s met transactie %s"
 
-#: app/wc-integration-gifty.php:283
+#: inc/WC_Integration_Gifty.php:291
 #, php-format
 msgid ""
 "The used gift card on order (%s) has no reservation transaction registered "
@@ -81,47 +87,51 @@ msgstr ""
 "reserveringstransactie geregistreerd in WooCommerce en kon daarom niet "
 "worden afgerond."
 
-#: app/wc-integration-gifty.php:305
+#: inc/WC_Integration_Gifty.php:309
+#, php-format
+msgid ""
+"The used gift card (%s) on order (%s) cannot be retrieved from the API. The "
+"gift card is not captured."
+msgstr ""
+"De gebruikte cadeaubon (%s) voor bestelling (%s) kan niet worden opgehaald "
+"via de API. De cadeaubon-afschrijving is niet bevestigd."
+
+#: inc/WC_Integration_Gifty.php:332
 #, php-format
 msgid "Redeemed %s on gift card %s with transaction %s"
 msgstr "Er is %s verzilverd op cadeaubon %s met transactie %s"
 
-#: app/wc-integration-gifty.php:314
+#: inc/WC_Integration_Gifty.php:341
 msgid "The used gift card could not be redeemed. Please try again."
 msgstr ""
 "De gebruikte cadeaubon kan niet worden ingewisseld. Probeer het opnieuw."
 
-#: app/wc-integration-gifty.php:356
+#: inc/WC_Integration_Gifty.php:374
+#, php-format
+msgid ""
+"The used gift card (%s) on order (%s) cannot be retrieved from the API. The "
+"gift card is not released."
+msgstr ""
+"De gebruikte cadeaubon (%s) voor bestelling (%s) kan niet worden opgehaald "
+"via de API. De cadeaubon is niet vrijgegeven."
+
+#: inc/WC_Integration_Gifty.php:398
 #, php-format
 msgid "Released %s on gift card %s with transaction %s"
 msgstr "Er is %s vrijgegeven voor cadeaubon %s met transactie %s"
 
-#: app/wc-integration-gifty.php:365
+#: inc/WC_Integration_Gifty.php:408
 msgid "The used gift card could not be released. Please try again."
 msgstr ""
 "De gebruikte cadeaubon kon niet worden vrijgegeven. Probeer het opnieuw."
-
-#: gifty-woocommerce.php:64
-#, php-format
-msgid ""
-"Gifty for WooCommerce requires WooCommerce to be installed and active. You "
-"can download %s here."
-msgstr ""
-"Gifty voor WooCommerce vereist dat WooCommerce wordt geïnstalleerd en "
-"actief is. Je kunt %s hier downloaden."
-
-#: gifty-woocommerce.php:73
-msgid "Settings"
-msgstr "Instellingen"
 
 #. Plugin Name of the plugin/theme
 msgid "Gifty for WooCommerce"
 msgstr "Gifty voor WooCommerce"
 
 #. Plugin URI of the plugin/theme
-#. Author URI of the plugin/theme
-msgid "https://gifty.nl"
-msgstr "https://gifty.nl"
+msgid "https://github.com/giftyhq/plugin-woocommerce"
+msgstr "https://github.com/giftyhq/plugin-woocommerce"
 
 #. Description of the plugin/theme
 msgid ""
@@ -133,3 +143,20 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Gifty B.V."
 msgstr "Gifty B.V."
+
+#. Author URI of the plugin/theme
+msgid "https://gifty.nl"
+msgstr "https://gifty.nl"
+
+#~ msgid "Developer options"
+#~ msgstr "Ontwikkelaarsopties"
+
+#~ msgid "Enable testing"
+#~ msgstr "Testmodus inschakelen"
+
+#~ msgid ""
+#~ "Your API-calls will be faked for testing purposes. Do not enable this in "
+#~ "production."
+#~ msgstr ""
+#~ "Je API-oproepen worden gesimuleerd voor testdoeleinden. Schakel dit niet "
+#~ "in als de website toegankelijk is voor bezoekers."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Gifty for WooCommerce\n"
-"POT-Creation-Date: 2020-09-03 16:26+0200\n"
+"POT-Creation-Date: 2020-09-24 14:13+0200\n"
 "PO-Revision-Date: 2020-09-03 16:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,91 +16,98 @@ msgstr ""
 "X-Poedit-WPHeader: gifty-woocommerce.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: app/wc-integration-gifty.php:28
-msgid "Gifty"
-msgstr ""
-
-#: app/wc-integration-gifty.php:29
-msgid "Accept Gifty gift cards in your WooCommerce shop."
-msgstr ""
-
-#: app/wc-integration-gifty.php:71
-msgid "API Key"
-msgstr ""
-
-#: app/wc-integration-gifty.php:73
-msgid ""
-"Enter your API Key. You can manage API-keys in your Gifty dashboard under "
-"the Developer options."
-msgstr ""
-
-#: app/wc-integration-gifty.php:78
-msgid "Developer options"
-msgstr ""
-
-#: app/wc-integration-gifty.php:80
-msgid "Enable testing"
-msgstr ""
-
-#: app/wc-integration-gifty.php:82
-msgid ""
-"Your API-calls will be faked for testing purposes. Do not enable this in "
-"production."
-msgstr ""
-
-#: app/wc-integration-gifty.php:101
-msgid "The API-key is invalid."
-msgstr ""
-
-#: app/wc-integration-gifty.php:176
-msgid "The used gift card is not valid anymore. Please try again."
-msgstr ""
-
-#: app/wc-integration-gifty.php:246
-#, php-format
-msgid "Reserved %s on gift card %s with transaction %s"
-msgstr ""
-
-#: app/wc-integration-gifty.php:283
-#, php-format
-msgid ""
-"The used gift card on order (%s) has no reservation transaction registered "
-"in WooCommerce, and therefor could not be finalized."
-msgstr ""
-
-#: app/wc-integration-gifty.php:305
-#, php-format
-msgid "Redeemed %s on gift card %s with transaction %s"
-msgstr ""
-
-#: app/wc-integration-gifty.php:314
-msgid "The used gift card could not be redeemed. Please try again."
-msgstr ""
-
-#: app/wc-integration-gifty.php:356
-#, php-format
-msgid "Released %s on gift card %s with transaction %s"
-msgstr ""
-
-#: app/wc-integration-gifty.php:365
-msgid "The used gift card could not be released. Please try again."
-msgstr ""
-
-#: gifty-woocommerce.php:64
+#: gifty-woocommerce.php:62
 #, php-format
 msgid ""
 "Gifty for WooCommerce requires WooCommerce to be installed and active. You "
 "can download %s here."
 msgstr ""
 
-#: gifty-woocommerce.php:73
+#: gifty-woocommerce.php:72
 msgid "Settings"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:27
+msgid "Gifty"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:28
+msgid "Accept Gifty gift cards in your WooCommerce shop."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:65
+msgid "API Key"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:68
+msgid ""
+"Enter your API Key. You can manage API-keys in your Gifty dashboard under "
+"the Developer options."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:89
+msgid "The API-key is invalid."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:165
+msgid "The used gift card is not valid anymore. Please try again."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:234
+#, php-format
+msgid ""
+"The used gift card (%s) on order (%s) cannot be retrieved from the API. "
+"The gift card is not redeemed."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:254
+#, php-format
+msgid "Reserved %s on gift card %s with transaction %s"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:291
+#, php-format
+msgid ""
+"The used gift card on order (%s) has no reservation transaction registered "
+"in WooCommerce, and therefor could not be finalized."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:309
+#, php-format
+msgid ""
+"The used gift card (%s) on order (%s) cannot be retrieved from the API. "
+"The gift card is not captured."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:332
+#, php-format
+msgid "Redeemed %s on gift card %s with transaction %s"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:341
+msgid "The used gift card could not be redeemed. Please try again."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:374
+#, php-format
+msgid ""
+"The used gift card (%s) on order (%s) cannot be retrieved from the API. "
+"The gift card is not released."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:398
+#, php-format
+msgid "Released %s on gift card %s with transaction %s"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:408
+msgid "The used gift card could not be released. Please try again."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
@@ -108,8 +115,7 @@ msgid "Gifty for WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-#. Author URI of the plugin/theme
-msgid "https://gifty.nl"
+msgid "https://github.com/giftyhq/plugin-woocommerce"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -119,4 +125,8 @@ msgstr ""
 
 #. Author of the plugin/theme
 msgid "Gifty B.V."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://gifty.nl"
 msgstr ""
