@@ -33,5 +33,11 @@ We're more than happy to help you out! You can contact us through our [contact p
 
 == Changelog ==
 
+= 1.0.2 =
+* Added missing translations for error messages.
+
+= 1.0.1 =
+* Lowered the required PHP version from 7.3 to 7.2.
+
 = 1.0.0 =
-* First release of the Gifty for WooCommerce plugin
+* First release of the Gifty for WooCommerce plugin.
