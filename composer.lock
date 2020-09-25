@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "gifty/gifty-php",
-            "version": "V1.0.1",
+            "version": "V1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giftyhq/gifty-php.git",
-                "reference": "3923227b1de1e1c40a534974baf612f74e278b20"
+                "reference": "1aebd00b50660b8a6442753a4b30fa97b35102ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giftyhq/gifty-php/zipball/3923227b1de1e1c40a534974baf612f74e278b20",
-                "reference": "3923227b1de1e1c40a534974baf612f74e278b20",
+                "url": "https://api.github.com/repos/giftyhq/gifty-php/zipball/1aebd00b50660b8a6442753a4b30fa97b35102ec",
+                "reference": "1aebd00b50660b8a6442753a4b30fa97b35102ec",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
                 "api",
                 "gifty"
             ],
-            "time": "2020-09-23T13:04:42+00:00"
+            "time": "2020-09-25T12:53:43+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
