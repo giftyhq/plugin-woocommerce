@@ -33,6 +33,9 @@ We're more than happy to help you out! You can contact us through our [contact p
 
 == Changelog ==
 
+= 1.0.4 =
+* Updated the main Gifty library
+
 = 1.0.3 =
 * Improved the automated build process for new releases.
 
