@@ -7,6 +7,7 @@ namespace Gifty\WooCommerce;
 use Exception;
 use Gifty\Client\Exceptions\ApiException;
 use Gifty\Client\GiftyClient;
+use Gifty\Client\Resources\GiftCard;
 use WC_Admin_Settings;
 use WC_Integration;
 use WC_Order;
@@ -22,9 +23,14 @@ final class WC_Integration_Gifty extends WC_Integration {
      */
     private $client;
 
+    /**
+     * @var array
+     */
+    private $checkedCoupons = [];
+
     public function __construct() {
-        $this->id = 'gifty-woocommerce';
-        $this->method_title = __( 'Gifty', 'gifty-woocommerce' );
+        $this->id                 = 'gifty-woocommerce';
+        $this->method_title       = __( 'Gifty', 'gifty-woocommerce' );
         $this->method_description = __( 'Accept Gifty gift cards in your WooCommerce shop.', 'gifty-woocommerce' );
 
         // Load the settings
@@ -36,6 +42,9 @@ final class WC_Integration_Gifty extends WC_Integration {
 
         // Actions
         add_action( 'woocommerce_update_options_integration_' . $this->id, [ $this, 'process_admin_options' ] );
+
+        // Filter coupon input
+        add_filter( 'woocommerce_coupon_code', [ $this, 'filter_gift_card_code' ], 10, 1 );
 
         // Retrieve gift card
         add_action( 'woocommerce_get_shop_coupon_data', [ $this, 'retrieve_gift_card' ], 10, 2 );
@@ -62,13 +71,13 @@ final class WC_Integration_Gifty extends WC_Integration {
     public function init_form_fields() {
         $this->form_fields = [
             'gifty_api_key' => [
-                'title' => __( 'API Key', 'gifty-woocommerce' ),
-                'type' => 'text',
+                'title'       => __( 'API Key', 'gifty-woocommerce' ),
+                'type'        => 'text',
                 'description' => __(
                     'Enter your API Key. You can manage API-keys in your Gifty dashboard under the Developer options.',
                     'gifty-woocommerce'
                 ),
-                'default' => ''
+                'default'     => ''
             ],
         ];
     }
@@ -81,8 +90,8 @@ final class WC_Integration_Gifty extends WC_Integration {
      *
      * @return string
      */
-    public function validate_gifty_api_key_field( string $key, string $value ): string {
-        $value = trim( $value );
+    public function validate_gifty_api_key_field( string $key, string $value ) : string {
+        $value      = trim( $value );
         $api_client = new GiftyClient( $value );
 
         if ( $api_client->validateApiKey() === false ) {
@@ -93,13 +102,28 @@ final class WC_Integration_Gifty extends WC_Integration {
     }
 
     /**
+     * Remove spaces and dashes from applied coupons
+     *
+     * @param string $code
+     *
+     * @return string
+     */
+    public function filter_gift_card_code( string $code ) : string {
+        if ( $this->get_gift_card( $code ) !== null ) {
+            return GiftCard::cleanCode( $code );
+        }
+
+        return $code;
+    }
+
+    /**
      * This method hooks into woocommerce_get_shop_coupon_data and is fired
      * when a user submits a voucher in the WC voucher input.
      *
      * We validate if the entered voucher is known as a gift card at Gifty.
      * If this is the case the corresponding value is returned and applied as discount.
      *
-     * @param mixed $data
+     * @param mixed  $data
      * @param string $gift_card_code
      *
      * @return mixed
@@ -109,16 +133,21 @@ final class WC_Integration_Gifty extends WC_Integration {
             return $data;
         }
 
-        try {
-            $gift_card = $this->client->giftCards->get( $gift_card_code );
-        } catch ( ApiException $e ) {
+        if ( $data !== false ) {
             return $data;
         }
 
-        $data = [
-            'amount' => $this->cents_to_float( $gift_card->getBalance() ),
-            'description' => 'gifty_gift_card'
-        ];
+        $gift_card = $this->get_gift_card( $gift_card_code );
+
+        if (
+            $gift_card !== null &&
+            $gift_card->getBalance() !== 0
+        ) {
+            return [
+                'amount'      => $this->cents_to_float( $gift_card->getBalance() ),
+                'description' => 'gifty_gift_card'
+            ];
+        }
 
         return $data;
     }
@@ -134,7 +163,7 @@ final class WC_Integration_Gifty extends WC_Integration {
      *
      * @return WC_Order
      */
-    public function redeem_gift_card( WC_Order $order ): WC_Order {
+    public function redeem_gift_card( WC_Order $order ) : WC_Order {
         foreach ( $order->get_coupons() as $code => $coupon ) {
             if ( $this->is_gifty_gift_card( $coupon ) === false ) {
                 continue;
@@ -149,9 +178,9 @@ final class WC_Integration_Gifty extends WC_Integration {
                 $transaction = $this->client->giftCards->redeem(
                     $coupon->get_code(),
                     [
-                        'amount' => $this->get_coupon_discount_in_cents( $coupon ),
+                        'amount'   => $this->get_coupon_discount_in_cents( $coupon ),
                         'currency' => 'EUR',
-                        'capture' => false
+                        'capture'  => false
                     ]
                 );
 
@@ -161,10 +190,12 @@ final class WC_Integration_Gifty extends WC_Integration {
                 // Add hook to log the transaction after order is saved
                 add_action( 'woocommerce_after_order_object_save', [ $this, 'redeem_gift_card_log' ], 10, 1 );
             } catch ( Exception $exception ) {
-                wc_add_notice(
-                    __( 'The used gift card is not valid anymore. Please try again.', 'gifty-woocommerce' ),
-                    'error'
+                $message = __(
+                    'The used gift card is not valid anymore. Please try again.',
+                    'gifty-woocommerce'
                 );
+
+                $this->log_transaction( $order, $message, true, true );
             }
         }
 
@@ -182,7 +213,7 @@ final class WC_Integration_Gifty extends WC_Integration {
      *
      * @return WC_Order
      */
-    public function redeem_gift_card_admin( WC_Order $order ): WC_Order {
+    public function redeem_gift_card_admin( WC_Order $order ) : WC_Order {
         foreach ( $order->get_coupons() as $code => $coupon ) {
             $meta = $coupon->get_meta( 'coupon_data', true );
 
@@ -217,7 +248,7 @@ final class WC_Integration_Gifty extends WC_Integration {
      *
      * @return WC_Order
      */
-    public function redeem_gift_card_log( WC_Order $order ): WC_Order {
+    public function redeem_gift_card_log( WC_Order $order ) : WC_Order {
         foreach ( $order->get_coupons() as $code => $coupon ) {
             if ( $this->is_gifty_gift_card( $coupon ) === false ) {
                 continue;
@@ -227,7 +258,7 @@ final class WC_Integration_Gifty extends WC_Integration {
             $transaction_id = $coupon->get_meta( 'gifty_reserve_transaction', true );
 
             try {
-                $giftCard = $this->client->giftCards->get( $coupon->get_code() );
+                $gift_card = $this->get_gift_card( $coupon->get_code() );
             } catch ( ApiException $e ) {
                 $message = sprintf(
                     __(
@@ -243,7 +274,7 @@ final class WC_Integration_Gifty extends WC_Integration {
                 continue;
             }
 
-            $transaction = $giftCard->transactions->get( $transaction_id );
+            $transaction = $gift_card->transactions->get( $transaction_id );
 
             if ( $transaction->getStatus() !== 'pending' ) {
                 continue;
@@ -277,7 +308,7 @@ final class WC_Integration_Gifty extends WC_Integration {
      *
      * @param int $order_id
      */
-    public function capture_gift_card( int $order_id ): void {
+    public function capture_gift_card( int $order_id ) : void {
         $order = new WC_Order( $order_id );
 
         foreach ( $order->get_coupons() as $code => $coupon ) {
@@ -288,7 +319,7 @@ final class WC_Integration_Gifty extends WC_Integration {
             if ( $coupon->meta_exists( 'gifty_reserve_transaction' ) === false ) {
                 $message = sprintf(
                     __(
-                        'The used gift card on order (%s) has no reservation transaction registered in WooCommerce, and therefor could not be finalized.',
+                        'The used gift card on order (%s) has no reservation transaction registered in WooCommerce, and therefore could not be finalized.',
                         'gifty-woocommerce'
                     ),
                     $order_id
@@ -302,7 +333,7 @@ final class WC_Integration_Gifty extends WC_Integration {
             $transaction_id = $coupon->get_meta( 'gifty_reserve_transaction', true );
 
             try {
-                $giftCard = $this->client->giftCards->get( $coupon->get_code() );
+                $gift_card = $this->get_gift_card( $coupon->get_code() );
             } catch ( ApiException $e ) {
                 $message = sprintf(
                     __(
@@ -318,7 +349,7 @@ final class WC_Integration_Gifty extends WC_Integration {
                 continue;
             }
 
-            $transaction = $giftCard->transactions->get( $transaction_id );
+            $transaction = $gift_card->transactions->get( $transaction_id );
 
             if ( $transaction->getStatus() !== 'pending' ) {
                 continue;
@@ -326,7 +357,7 @@ final class WC_Integration_Gifty extends WC_Integration {
 
             try {
                 // Capture the pending transaction
-                if ( $giftCard->transactions->capture( $transaction_id ) ) {
+                if ( $gift_card->transactions->capture( $transaction_id ) ) {
                     // Write order note to make the redeem traceable
                     $message = sprintf(
                         __( 'Redeemed %s on gift card %s with transaction %s', 'gifty-woocommerce' ),
@@ -366,8 +397,8 @@ final class WC_Integration_Gifty extends WC_Integration {
             $transaction_id = $coupon->get_meta( 'gifty_reserve_transaction', true );
 
             try {
-                $giftCard = $this->client->giftCards->get( $coupon->get_code() );
-                $transaction = $giftCard->transactions->get( $transaction_id );
+                $gift_card   = $this->get_gift_card( $coupon->get_code() );
+                $transaction = $gift_card->transactions->get( $transaction_id );
             } catch ( ApiException $e ) {
                 $message = sprintf(
                     __(
@@ -389,7 +420,7 @@ final class WC_Integration_Gifty extends WC_Integration {
 
             try {
                 // Cancel the pending transaction
-                if ( $giftCard->transactions->release( $transaction_id ) ) {
+                if ( $gift_card->transactions->release( $transaction_id ) ) {
                     // Remove the applied gift card from the order
                     $order->remove_coupon( $coupon->get_code() );
 
@@ -418,11 +449,11 @@ final class WC_Integration_Gifty extends WC_Integration {
      * Validate if the submitted coupon is known at Gifty
      *
      * @param WC_Order_Item_Coupon $coupon
-     * @param bool $validate_by_api
+     * @param bool                 $validate_by_api
      *
      * @return bool
      */
-    private function is_gifty_gift_card( WC_Order_Item_Coupon $coupon, bool $validate_by_api = false ): bool {
+    private function is_gifty_gift_card( WC_Order_Item_Coupon $coupon, bool $validate_by_api = false ) : bool {
         if ( false === $coupon instanceof WC_Order_Item_Coupon ) {
             return false;
         }
@@ -432,9 +463,7 @@ final class WC_Integration_Gifty extends WC_Integration {
         }
 
         if ( $validate_by_api === true ) {
-            try {
-                $this->client->giftCards->get( $coupon->get_code() );
-            } catch ( ApiException $e ) {
+            if ( $this->get_gift_card( $coupon->get_code() ) === null ) {
                 return false;
             }
 
@@ -455,39 +484,77 @@ final class WC_Integration_Gifty extends WC_Integration {
      * and optionally display as notice
      *
      * @param WC_Order $order
-     * @param string $message
-     * @param bool $display_notice
-     * @param bool $is_error
+     * @param string   $message
+     * @param bool     $display_notice
+     * @param bool     $is_error
      */
     private function log_transaction(
         WC_Order $order,
         string $message,
         bool $display_notice = false,
         bool $is_error = false
-    ): void {
+    ) : void {
         $order->add_order_note( 'Gifty: ' . $message );
 
         if ( $display_notice !== false ) {
-            wc_add_notice(
-                $message,
-                $is_error ? 'error' : 'success'
-            );
+            if ( function_exists( 'wc_add_notice' ) ) {
+                wc_add_notice(
+                    $message,
+                    $is_error ? 'error' : 'success'
+                );
+            } elseif ( $is_error ) {
+                WC_Admin_Settings::add_error( $message );
+            } else {
+                WC_Admin_Settings::add_message( $message );
+            }
         }
     }
 
-    private function get_api_key(): string {
+    /**
+     * Retrieve a gift card from our api and save it on the class instance
+     *
+     * @param string $code
+     *
+     * @return GiftCard|null
+     */
+    private function get_gift_card( string $code ) : ?GiftCard {
+        $cleanCode = GiftCard::cleanCode( $code );
+        $gift_card = null;
+
+        if ( strlen( $cleanCode ) !== 16 ) {
+            return null;
+        }
+
+        if ( isset( $this->checkedCoupons[ $cleanCode ] ) ) {
+            return $this->checkedCoupons[ $cleanCode ];
+        }
+
+        // Check if this really is a Gifty gift card, to prevent we change any coupons that do not belong to us
+        try {
+            $gift_card = $this->client->giftCards->get( $cleanCode );
+
+            // We set the gift card on the class, so we can reuse the data without making another request
+            $this->checkedCoupons[ $cleanCode ] = $gift_card;
+        } catch ( ApiException $e ) {
+            $gift_card = null;
+        }
+
+        return $gift_card;
+    }
+
+    private function get_api_key() : string {
         return $this->settings['gifty_api_key'];
     }
 
-    private function get_coupon_discount_in_cents( WC_Order_Item_Coupon $coupon ): int {
+    private function get_coupon_discount_in_cents( WC_Order_Item_Coupon $coupon ) : int {
         return intval( ( floatval( $coupon->get_discount_tax() ) * 100 ) + ( floatval( $coupon->get_discount() ) * 100 ) );
     }
 
-    private function cents_to_float( int $amount ): float {
+    private function cents_to_float( int $amount ) : float {
         return $amount / 100;
     }
 
-    private function cents_to_human( int $amount ): string {
+    private function cents_to_human( int $amount ) : string {
         return wc_price( $this->cents_to_float( $amount ) );
     }
 }
