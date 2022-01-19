@@ -13,7 +13,7 @@
  * Requires at least: 5.4
  * Tested up to: 5.6
  * WC requires at least: 4.4.0
- * WC tested up to: 4.7.1
+ * WC tested up to: 6.1.0
  */
 
 declare( strict_types=1 );
