@@ -3,7 +3,7 @@ Contributors:
 Tags: gifty, cadeaubon, cadeaukaart, woocommerce, gift card, gift cards, voucher
 Text Domain: gifty-woocommerce
 Requires at least: 5.4
-Tested up to: 5.8
+Tested up to: 6.3
 Stable tag: 1.1.0
 Requires PHP: 7.2
 License: GPLv2 or later
