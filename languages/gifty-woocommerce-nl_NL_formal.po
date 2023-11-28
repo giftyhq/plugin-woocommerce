@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gifty for WooCommerce\n"
 "POT-Creation-Date: 2023-11-28 16:02+0100\n"
-"PO-Revision-Date: 2023-11-28 16:04+0100\n"
+"PO-Revision-Date: 2023-11-28 16:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -29,7 +29,7 @@ msgid ""
 "can download %s here."
 msgstr ""
 "Gifty voor WooCommerce vereist dat WooCommerce wordt geïnstalleerd en actief "
-"is. Je kunt %s hier downloaden."
+"is. U kunt %s hier downloaden."
 
 #: gifty-woocommerce.php:146
 msgid "Settings"
@@ -132,7 +132,7 @@ msgstr "Gifty"
 
 #: inc/WC_Integration_Gifty.php:29
 msgid "Accept Gifty gift cards in your WooCommerce shop."
-msgstr "Accepteer Gifty cadeaubonnen in je WooCommerce-shop."
+msgstr "Accepteer Gifty cadeaubonnen in uw WooCommerce-shop."
 
 #: inc/WC_Integration_Gifty.php:68
 msgid "API Key"
@@ -143,8 +143,8 @@ msgid ""
 "Enter your API Key. You can manage API-keys in your Gifty dashboard under "
 "the Developer options."
 msgstr ""
-"Voer je API-sleutel in. Je kunt API-sleutels beheren in jouw Gifty-dashboard "
-"op de instellingenpagina voor ontwikkelaars."
+"Voer uw API-sleutel in. U kunt API-sleutels beheren in uw Gifty-dashboard op "
+"de instellingenpagina voor ontwikkelaars."
 
 #: inc/WC_Integration_Gifty.php:77
 msgid "Gift Card field in cart"
@@ -269,11 +269,11 @@ msgstr "Bedrag beschikbaar om terug te betalen op Gifty-cadeaubonnen"
 
 #: templates/cart/gift-card-form.php:12
 msgid "Have a gift card?"
-msgstr "Heb je een cadeaubon?"
+msgstr "Heeft u een cadeaubon?"
 
 #: templates/cart/gift-card-form.php:23
 msgid "Enter your gift card code"
-msgstr "Voer de code van je cadeaubon in"
+msgstr "Voer de code van uw cadeaubon in"
 
 #: templates/cart/gift-card-form.php:34
 msgid "Apply"
@@ -305,7 +305,7 @@ msgstr "https://github.com/giftyhq/plugin-woocommerce"
 msgid ""
 "WordPress plugin for accepting Gifty gift cards in your WooCommerce shop."
 msgstr ""
-"WordPress plug-in voor het accepteren van cadeaubonnen in je WooCommerce-"
+"WordPress plug-in voor het accepteren van cadeaubonnen in uw WooCommerce-"
 "shop."
 
 #. Author of the plugin/theme

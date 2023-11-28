@@ -1,0 +1,18 @@
+#gifty_cart_code_field {
+    display: inline-block;
+}
+
+#gifty_cart_submit {
+    display: inline-block;
+}
+
+#gifty_cart_code_field input {
+    text-transform: uppercase;
+}
+
+.cart_totals {
+
+    .cart-discount.gift-card small {
+        font-weight: normal;
+    }
+}

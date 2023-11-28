@@ -1,16 +1,16 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Gifty for WooCommerce\n"
-"POT-Creation-Date: 2020-11-26 16:40+0100\n"
+"POT-Creation-Date: 2023-11-28 16:02+0100\n"
 "PO-Revision-Date: 2020-09-03 16:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: gifty-woocommerce.php\n"
@@ -21,93 +21,264 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: build\n"
 
-#: gifty-woocommerce.php:62
+#: gifty-woocommerce.php:136
 #, php-format
 msgid ""
 "Gifty for WooCommerce requires WooCommerce to be installed and active. You "
 "can download %s here."
 msgstr ""
 
-#: gifty-woocommerce.php:72
+#: gifty-woocommerce.php:146
 msgid "Settings"
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:33
+#: inc/WC_Gifty_Cart.php:136 inc/WC_Gifty_Cart.php:201
+msgid "Invalid security token sent"
+msgstr ""
+
+#: inc/WC_Gifty_Cart.php:141
+msgid "Unable to apply gift card, session not found"
+msgstr ""
+
+#: inc/WC_Gifty_Cart.php:150
+msgid "Please enter a valid gift card code"
+msgstr ""
+
+#: inc/WC_Gifty_Cart.php:162
+msgid "This gift card does not exist"
+msgstr ""
+
+#: inc/WC_Gifty_Cart.php:171 inc/compatibility/WC_Gift_Cards.php:66
+msgid "This gift card has already been applied"
+msgstr ""
+
+#: inc/WC_Gifty_Cart.php:178 inc/compatibility/WC_Gift_Cards.php:71
+msgid "This gift card has no available balance"
+msgstr ""
+
+#: inc/WC_Gifty_Cart.php:194
+msgid "Gift card applied successfully"
+msgstr ""
+
+#: inc/WC_Gifty_Cart.php:206
+msgid "Unable to remove gift card, session not found"
+msgstr ""
+
+#: inc/WC_Gifty_Cart.php:217
+msgid "Gift card removed successfully"
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:83
+msgid ""
+"The balance of one or more gift cards has changed, please review the gift "
+"cards before placing the order."
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:143
+#, php-format
+msgid "Gift card %s redeemed for %s (%s)"
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:155
+#, php-format
+msgid "Error while redeeming gift cards. Error: %s"
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:173 inc/WC_Gifty_Order.php:239
+#, php-format
+msgid "Gift card %s released for %s (%s)"
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:184 inc/WC_Gifty_Order.php:250
+#, php-format
+msgid "Gift card %s could not be released for %s (%s). Error: "
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:278
+#, php-format
+msgid "Gift card %s was already released for %s (%s). Payment not applied."
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:304
+#, php-format
+msgid "Gift card %s captured for %s (%s)"
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:315
+#, php-format
+msgid "Gift card %s could not be captured for %s (%s). Error: "
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:376 templates/admin/order/gift-card-payment.php:59
+#: templates/admin/order/gift-card-totals.php:21
+#: templates/cart/gift-card-totals.php:36
+#: templates/cart/gift-card-totals.php:42
+msgid "Gift Card"
+msgstr ""
+
+#: inc/WC_Gifty_Order.php:453 inc/admin/WC_Gifty_Refunds.php:260
+#, php-format
+msgid "Gifty: %s"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:28
 msgid "Gifty"
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:34
+#: inc/WC_Integration_Gifty.php:29
 msgid "Accept Gifty gift cards in your WooCommerce shop."
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:74
+#: inc/WC_Integration_Gifty.php:68
 msgid "API Key"
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:77
+#: inc/WC_Integration_Gifty.php:71
 msgid ""
 "Enter your API Key. You can manage API-keys in your Gifty dashboard under "
 "the Developer options."
 msgstr ""
 
+#: inc/WC_Integration_Gifty.php:77
+msgid "Gift Card field in cart"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:78
+msgid "Show gift card field on the cart page"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:81
+msgid "Should the gift card field be visible on the cart page."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:87
+msgid "Gift Card field in checkout"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:88
+msgid "Show gift card field on the checkout page"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:91
+msgid "Should the gift card field be visible on the checkout page."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:97
+msgid "WooCommerce Analytics"
+msgstr ""
+
 #: inc/WC_Integration_Gifty.php:98
+msgid "Enable calculation corrections"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:101
+msgid ""
+"Apply corrections on WooCommerce Analytics data for correct tax and "
+"revenue reporting."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:107
+msgid "Compatibility fixes"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:108
+msgid "Enable compatibility fixes with other plugins"
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:111
+msgid ""
+"Enable fixes and improvements to work better with other WordPress plugins."
+msgstr ""
+
+#: inc/WC_Integration_Gifty.php:132
 msgid "The API-key is invalid."
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:194
-msgid "The used gift card is not valid anymore. Please try again."
-msgstr ""
-
-#: inc/WC_Integration_Gifty.php:265
+#: inc/admin/WC_Gifty_Refunds.php:110
 #, php-format
 msgid ""
-"The used gift card (%s) on order (%s) cannot be retrieved from the API. "
-"The gift card is not redeemed."
+"Gift card %s has already been captured, so it cannot be refunded. Process "
+"this refund manually."
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:285
-#, php-format
-msgid "Reserved %s on gift card %s with transaction %s"
-msgstr ""
-
-#: inc/WC_Integration_Gifty.php:322
+#: inc/admin/WC_Gifty_Refunds.php:123
 #, php-format
 msgid ""
-"The used gift card on order (%s) has no reservation transaction registered "
-"in WooCommerce, and therefore could not be finalized."
+"It is only supported to refund the full gift card payment at once. The "
+"refund should be %s."
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:340
+#: inc/admin/WC_Gifty_Refunds.php:135
 #, php-format
-msgid ""
-"The used gift card (%s) on order (%s) cannot be retrieved from the API. "
-"The gift card is not captured."
+msgid "Gift card %s has already been captured, so it cannot be refunded."
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:363
+#: inc/admin/WC_Gifty_Refunds.php:144
+msgid "Invalid refund amount"
+msgstr ""
+
+#: inc/admin/WC_Gifty_Refunds.php:182
 #, php-format
-msgid "Redeemed %s on gift card %s with transaction %s"
+msgid "Refunded %s to gift card %s."
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:372
-msgid "The used gift card could not be redeemed. Please try again."
+#: templates/admin/order/gift-card-payment.php:12
+msgid "Order Total"
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:405
+#: templates/admin/order/gift-card-payment.php:28
+msgid "Paid"
+msgstr ""
+
+#: templates/admin/order/gift-card-payment.php:43
 #, php-format
-msgid ""
-"The used gift card (%s) on order (%s) cannot be retrieved from the API. "
-"The gift card is not released."
+msgid "%1$s via %2$s"
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:429
+#: templates/admin/order/gift-card-payment.php:73
+msgid "Refunded"
+msgstr ""
+
+#: templates/admin/order/gift-card-refund-totals.php:10
 #, php-format
-msgid "Released %s on gift card %s with transaction %s"
+msgid "Refund %1$s via %2$s"
 msgstr ""
 
-#: inc/WC_Integration_Gifty.php:439
-msgid "The used gift card could not be released. Please try again."
+#: templates/admin/order/gift-card-refund-totals.php:12
+msgid "Amount already refunded to Gifty gift cards"
+msgstr ""
+
+#: templates/admin/order/gift-card-refund-totals.php:16
+msgid "Amount available to refund to Gifty gift cards"
+msgstr ""
+
+#: templates/cart/gift-card-form.php:12
+msgid "Have a gift card?"
+msgstr ""
+
+#: templates/cart/gift-card-form.php:23
+msgid "Enter your gift card code"
+msgstr ""
+
+#: templates/cart/gift-card-form.php:34
+msgid "Apply"
+msgstr ""
+
+#: templates/cart/gift-card-totals.php:14
+#: templates/cart/gift-card-totals.php:18
+msgid "Total"
+msgstr ""
+
+#: templates/cart/gift-card-totals.php:15
+#: templates/cart/gift-card-totals.php:19
+msgid "before gift cards"
+msgstr ""
+
+#: templates/cart/gift-card-totals.php:48
+msgid "[Remove]"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
