@@ -4,8 +4,8 @@ Tags: gifty, cadeaubon, cadeaukaart, woocommerce, gift card, gift cards, voucher
 Text Domain: gifty-woocommerce
 Requires at least: 5.4
 Tested up to: 6.3
-Stable tag: 1.1.0
-Requires PHP: 7.2
+Stable tag: 2.0.0
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,13 +15,13 @@ WordPress plugin for accepting Gifty gift cards in your WooCommerce shop.
 
 The [Gifty for WooCommerce](https://gifty.nl) plugin enables you to accept Gifty gift cards in your WooCommerce shop.
 
-Your customers can enter their Gifty gift card code during checkout in the coupon field, and if the coupon is recognized the discount will be applied to the order.
+Your customers can enter their Gifty gift card code during checkout and in their cart. The gift card will then be applied as payment on the order.
 
 == Frequently Asked Questions ==
 
 = How can customers enter their gift card? =
 
-Entering gift card codes can be done through the coupon input that is already available on your checkout screen by default.
+Entering gift card codes can be done through the added gift card form on the cart page and during checkout. The gift card form on the cart page can be enabled or disabled in the plugin settings.
 
 = Can I sell gift cards with this plugin? =
 
@@ -29,9 +29,19 @@ No, this plugin has the purpose of accepting Gifty gift cards in your WooCommerc
 
 = I have a different question. How can I get in touch? =
 
-We're more than happy to help you out! You can contact us through our [contact page](https://business.gifty.nl/contact).
+We're more than happy to help you out! You can contact us through our [contact page](https://gifty.nl/contact).
 
 == Changelog ==
+
+= 2.0.0 =
+* Apply gift cards as payment instead of as coupon discount
+* Added a dedicated gift card form on the cart and checkout page
+* Added support for WooCommerce Refunds as long as the order is unprocessed
+* Added support for WooCommerce Analytics
+* Added support for WooCommerce HPOS
+* Compatibility support with WooCommerce Gift Cards
+* Changed the minimum required PHP version from 7.2 to 8.0
+* Updated the main Gifty library
 
 = 1.1.0 =
 * Apply code formatting on applied gift cards

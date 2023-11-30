@@ -1,27 +1,32 @@
 {
-  "name": "gifty/plugin-woocommerce",
-  "description": "WordPress plugin to accept Gifty gift cards in your WooCommerce shop.",
-  "type": "project",
-  "license": "GPL-2.0-or-later",
-  "scripts": {
-    "phpcs": "vendor/bin/phpcs inc --standard=NeutronStandard",
-    "phpcbf": "vendor/bin/phpcbf inc --standard=NeutronStandard",
-    "ci": [
-      "@phpcs"
-    ]
-  },
-  "require": {
-    "php": ">=7.2.0",
-    "gifty/gifty-php": "^v1.0.4"
-  },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^3.5",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-    "automattic/phpcs-neutron-standard": "^1.6"
-  },
-  "autoload": {
-    "psr-4": {
-      "Gifty\\WooCommerce\\": "inc/"
-    }
-  }
+	"name": "gifty/plugin-woocommerce",
+	"description": "WordPress plugin to accept Gifty gift cards in your WooCommerce shop.",
+	"type": "project",
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"phpcs": "vendor/bin/phpcs inc --standard=NeutronStandard",
+		"phpcbf": "vendor/bin/phpcbf inc --standard=NeutronStandard",
+		"ci": [
+			"@phpcs"
+		]
+	},
+	"require": {
+		"php": ">=8.0.0",
+		"gifty/gifty-php": "^v1.6.0"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.5",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+		"automattic/phpcs-neutron-standard": "^1.6"
+	},
+	"autoload": {
+		"psr-4": {
+			"Gifty\\WooCommerce\\": "inc/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
 }
