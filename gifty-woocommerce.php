@@ -85,7 +85,7 @@ if ( ! class_exists( 'Gifty_WooCommerce' ) ) {
         public function register_front_styles(): void {
             // Front JS and CSS for the cart and checkout page
             if ( is_checkout() || is_cart() ) {
-                $asset_file = include( WC_Gifty()->get_plugin_root_path() . 'build/checkout.asset.php' );
+                $asset_file = include( $this->get_plugin_root_path() . 'build/checkout.asset.php' );
 
                 wp_register_script(
                     'gifty-checkout',
