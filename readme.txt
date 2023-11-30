@@ -33,7 +33,7 @@ We're more than happy to help you out! You can contact us through our [contact p
 
 == Changelog ==
 
-= 2.0.0 =
+= 2.0.1 =
 * Apply gift cards as payment instead of as coupon discount
 * Added a dedicated gift card form on the cart and checkout page
 * Added support for WooCommerce Refunds as long as the order is unprocessed
