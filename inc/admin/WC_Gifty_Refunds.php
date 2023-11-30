@@ -43,14 +43,17 @@ class WC_Gifty_Refunds {
         }
 
         $available_to_refund = 0;
+        $already_captured = 0;
         $already_refunded = 0;
 
         foreach ( $gift_cards as $gift_card ) {
             $available_to_refund += $gift_card->get_amount_used();
+            $already_captured += !!$gift_card->get_transaction_id_capture() ? $gift_card->get_amount_used() : 0;
             $already_refunded += $gift_card->get_amount_refunded();
         }
 
         $available_to_refund -= $already_refunded;
+        $available_to_refund -= $already_captured;
 
         // Return gift-card-refund-totals template
         wc_get_template(
