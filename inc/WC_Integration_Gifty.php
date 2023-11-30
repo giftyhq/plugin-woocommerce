@@ -8,6 +8,7 @@ use Gifty\Client\GiftyClient;
 use Gifty\WooCommerce\Admin\WC_Gifty_Analytics;
 use Gifty\WooCommerce\Admin\WC_Gifty_Refunds;
 use Gifty\WooCommerce\Compatibility\CompatibilityRegister;
+use Gifty\WooCommerce\migration\Migration_1;
 use WC_Admin_Settings;
 use WC_Integration;
 
@@ -16,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class WC_Integration_Gifty extends WC_Integration {
+    const DB_VERSION = 1;
+
     public GiftyClient $client;
     private WC_Gifty_Cart $cart;
     private WC_Gifty_Order $order;
@@ -43,6 +46,9 @@ final class WC_Integration_Gifty extends WC_Integration {
         if ( $this->get_option( 'gifty_wc_compatibility_fixes' ) === 'yes' ) {
             new CompatibilityRegister( $this->client );
         }
+
+        // Handle plugin migration on update
+        add_action( 'admin_init', [ $this, 'handle_plugin_migration' ] );
 
         // Initialize modules
         $this->rest_api = new WC_Gifty_API( $this->client );
@@ -133,5 +139,23 @@ final class WC_Integration_Gifty extends WC_Integration {
         }
 
         return $value;
+    }
+
+    /**
+     * Migrate the plugin DB version on plugin updates
+     * @return void
+     */
+    public function handle_plugin_migration(): void {
+        // Get the current DB version
+        $current_db_version = (int) get_option( 'gifty_db_version', 0 );
+
+        // If the DB version is lower than the current plugin version, run the migration
+        if ( $current_db_version < self::DB_VERSION ) {
+            // Run migrations
+            ( new Migration_1( $this->client ) )->migrate();
+
+            // Update the DB version
+            update_option( 'gifty_db_version', self::DB_VERSION );
+        }
     }
 }

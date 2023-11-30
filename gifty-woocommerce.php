@@ -29,13 +29,13 @@ require plugin_dir_path( __FILE__ ) . '/vendor/autoload.php';
 if ( ! class_exists( 'Gifty_WooCommerce' ) ) {
     final class Gifty_WooCommerce {
 
-        private static $_instance = null;
+        private static self|null $_instance = null;
 
         public function __construct() {
             add_action( 'plugins_loaded', [ $this, 'init' ] );
         }
 
-        public static function instance() {
+        public static function instance(): self {
             if ( is_null( self::$_instance ) ) {
                 self::$_instance = new self();
             }
@@ -43,7 +43,7 @@ if ( ! class_exists( 'Gifty_WooCommerce' ) ) {
             return self::$_instance;
         }
 
-        public function init() {
+        public function init(): void {
             load_plugin_textdomain( 'gifty-woocommerce', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 
             // Check if WooCommerce is installed
@@ -82,7 +82,7 @@ if ( ! class_exists( 'Gifty_WooCommerce' ) ) {
             return $integrations;
         }
 
-        public function register_front_styles() {
+        public function register_front_styles(): void {
             // Front JS and CSS for the cart and checkout page
             if ( is_checkout() || is_cart() ) {
                 $asset_file = include( WC_Gifty()->get_plugin_root_path() . 'build/checkout.asset.php' );
@@ -105,15 +105,15 @@ if ( ! class_exists( 'Gifty_WooCommerce' ) ) {
                 wp_enqueue_style( 'gifty-checkout' );
 
                 // Create nonce and pass it to the checkout script
-                wp_localize_script( 'gifty-checkout', 'wc_params', array(
-                    'ajax_url'               => admin_url( 'admin-ajax.php' ),
-                    'apply_gift_card_nonce'  => wp_create_nonce( 'gifty_apply_gift_card' ),
+                wp_localize_script( 'gifty-checkout', 'wc_params', [
+                    'ajax_url' => admin_url( 'admin-ajax.php' ),
+                    'apply_gift_card_nonce' => wp_create_nonce( 'gifty_apply_gift_card' ),
                     'remove_gift_card_nonce' => wp_create_nonce( 'gifty_remove_gift_card' ),
-                ) );
+                ] );
             }
         }
 
-        public function register_admin_styles( $hook ) {
+        public function register_admin_styles( string $hook ): void {
             if ( 'woocommerce_page_wc-orders' !== $hook ) {
                 return;
             }
@@ -130,7 +130,7 @@ if ( ! class_exists( 'Gifty_WooCommerce' ) ) {
             wp_enqueue_script( 'gifty-admin' );
         }
 
-        public function notice_missing_wc_install() {
+        public function notice_missing_wc_install(): void {
             echo '<div class="error"><p><strong>' . sprintf(
                     esc_html__(
                         'Gifty for WooCommerce requires WooCommerce to be installed and active. You can download %s here.',
@@ -158,7 +158,7 @@ if ( ! class_exists( 'Gifty_WooCommerce' ) ) {
         }
     }
 
-    function WC_Gifty() {
+    function WC_Gifty(): Gifty_WooCommerce {
         return Gifty_WooCommerce::instance();
     }
 
