@@ -4,7 +4,7 @@ Tags: gifty, cadeaubon, cadeaukaart, woocommerce, gift card, gift cards, voucher
 Text Domain: gifty-woocommerce
 Requires at least: 5.4
 Tested up to: 6.4
-Stable tag: 2.0.0
+Stable tag: 2.0.2
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -33,7 +33,13 @@ We're more than happy to help you out! You can contact us through our [contact p
 
 == Changelog ==
 
+= 2.0.2 =
+* Updated third party dependencies
+
 = 2.0.1 =
+* Updated documentation and versioning
+
+= 2.0.0 =
 * Apply gift cards as payment instead of as coupon discount
 * Added a dedicated gift card form on the cart and checkout page
 * Added support for WooCommerce Refunds as long as the order is unprocessed
