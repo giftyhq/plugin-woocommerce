@@ -1,6 +1,6 @@
 <?php
 
-namespace Gifty\WooCommerce\migration;
+namespace Gifty\WooCommerce\Migration;
 
 use Gifty\Client\GiftyClient;
 use Gifty\Client\Resources\GiftCard;

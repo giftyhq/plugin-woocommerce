@@ -8,7 +8,7 @@ use Gifty\Client\GiftyClient;
 use Gifty\WooCommerce\Admin\WC_Gifty_Analytics;
 use Gifty\WooCommerce\Admin\WC_Gifty_Refunds;
 use Gifty\WooCommerce\Compatibility\CompatibilityRegister;
-use Gifty\WooCommerce\migration\Migration_1;
+use Gifty\WooCommerce\Migration\Migration_1;
 use WC_Admin_Settings;
 use WC_Integration;
 
