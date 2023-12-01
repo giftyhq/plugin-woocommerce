@@ -8,22 +8,22 @@
     "packages": [
         {
             "name": "gifty/gifty-php",
-            "version": "V1.6.0",
+            "version": "V1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giftyhq/gifty-php.git",
-                "reference": "4c18cf0fa9139f763561e9508c84f2c13a03644d"
+                "reference": "2a42106925a95c549a06f1ef2bdceaa81eb846fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giftyhq/gifty-php/zipball/4c18cf0fa9139f763561e9508c84f2c13a03644d",
-                "reference": "4c18cf0fa9139f763561e9508c84f2c13a03644d",
+                "url": "https://api.github.com/repos/giftyhq/gifty-php/zipball/2a42106925a95c549a06f1ef2bdceaa81eb846fa",
+                "reference": "2a42106925a95c549a06f1ef2bdceaa81eb846fa",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "php": "~7.4.0||~8.0.0||~8.1.0||~8.2.0",
+                "php": "~8.0.0||~8.1.0||~8.2.0||~8.3.0",
                 "psr/http-message": "^1.0"
             },
             "require-dev": {
@@ -57,9 +57,9 @@
             ],
             "support": {
                 "email": "info@gifty.nl",
-                "source": "https://github.com/giftyhq/gifty-php/tree/V1.6.0"
+                "source": "https://github.com/giftyhq/gifty-php/tree/V1.7.0"
             },
-            "time": "2023-06-08T13:49:31+00:00"
+            "time": "2023-12-01T16:07:08+00:00"
         },
         {
             "name": "psr/http-message",
