@@ -19,12 +19,13 @@ jobs:
             mysql:
                 image: mysql:latest
                 env:
+                    MYSQL_HOST: 127.0.0.1
                     MYSQL_USER: mysql
                     MYSQL_PASSWORD: password
                     MYSQL_DATABASE: wordpress_tests
                     MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
                 ports:
-                    - 3307:3307
+                    - 3306/tcp
                 options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
         steps:
@@ -60,5 +61,5 @@ jobs:
 
             - name: Run test suite
               run: |
-                bash bin/install-wp-tests.sh wordpress_tests mysql password 127.0.0.1:3307 latest true
+                bash bin/install-wp-tests.sh wordpress_tests mysql password 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest true
                 composer run-script test
