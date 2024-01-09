@@ -56,9 +56,9 @@ final class WC_Integration_Gifty extends WC_Integration
         $this->rest_api = new WC_Gifty_API( $this->client );
         $this->cart = new WC_Gifty_Cart(
             $this->client,
-            $this->get_option( 'gifty_gc_field_in_cart' ) === 'yes',
-            $this->get_option( 'gifty_gc_field_in_checkout' ) === 'yes',
-            $this->get_option( 'gifty_gc_apply_through_coupon_field' ) === 'yes',
+            $this->get_option( 'gifty_api_key' )&& $this->get_option( 'gifty_gc_field_in_cart' ) === 'yes',
+            $this->get_option( 'gifty_api_key' ) && $this->get_option( 'gifty_gc_field_in_checkout' ) === 'yes',
+            $this->get_option( 'gifty_api_key' ) && $this->get_option( 'gifty_gc_apply_through_coupon_field' ) === 'yes',
         );
         $this->order = new WC_Gifty_Order( $this->client );
         $this->admin_refunds = new WC_Gifty_Refunds( $this->client );
