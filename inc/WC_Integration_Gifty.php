@@ -12,21 +12,23 @@ use Gifty\WooCommerce\Migration\Migration_1;
 use WC_Admin_Settings;
 use WC_Integration;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-final class WC_Integration_Gifty extends WC_Integration {
+final class WC_Integration_Gifty extends WC_Integration
+{
     const DB_VERSION = 1;
 
-    public GiftyClient $client;
-    private WC_Gifty_Cart $cart;
-    private WC_Gifty_Order $order;
-    private WC_Gifty_API $rest_api;
+    public GiftyClient         $client;
+    private WC_Gifty_Cart      $cart;
+    private WC_Gifty_Order     $order;
+    private WC_Gifty_API       $rest_api;
     private WC_Gifty_Analytics $admin_analytics;
-    private WC_Gifty_Refunds $admin_refunds;
+    private WC_Gifty_Refunds   $admin_refunds;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->id = 'gifty-woocommerce';
         $this->method_title = __( 'Gifty', 'gifty-woocommerce' );
         $this->method_description = __( 'Accept Gifty gift cards in your WooCommerce shop.', 'gifty-woocommerce' );
@@ -48,7 +50,7 @@ final class WC_Integration_Gifty extends WC_Integration {
         }
 
         // Handle plugin migration on update
-        add_action( 'admin_init', [ $this, 'handle_plugin_migration' ] );
+        add_action( 'admin_init', [$this, 'handle_plugin_migration'] );
 
         // Initialize modules
         $this->rest_api = new WC_Gifty_API( $this->client );
@@ -62,13 +64,15 @@ final class WC_Integration_Gifty extends WC_Integration {
         $this->admin_analytics = new WC_Gifty_Analytics( $this->get_option( 'gifty_wc_analytics_integration' ) === 'yes' );
 
         // Actions
-        add_action( 'woocommerce_update_options_integration_' . $this->id, [ $this, 'process_admin_options' ] );
+        add_action( 'woocommerce_update_options_integration_' . $this->id, [$this, 'process_admin_options'] );
+        add_action( 'gifty_wc_execute_plugin_migration', [$this, 'execute_plugin_migration'], 10, 2 );
     }
 
     /**
      * Register form fields for the WooCommerce settings page
      */
-    public function init_form_fields() {
+    public function init_form_fields()
+    {
         $this->form_fields = [
             'gifty_api_key' => [
                 'title' => __( 'API Key', 'gifty-woocommerce' ),
@@ -130,7 +134,8 @@ final class WC_Integration_Gifty extends WC_Integration {
      *
      * @return string
      */
-    public function validate_gifty_api_key_field( string $key, string $value ): string {
+    public function validate_gifty_api_key_field( string $key, string $value ): string
+    {
         $value = trim( $value );
         $api_client = new GiftyClient( $value );
 
@@ -142,20 +147,45 @@ final class WC_Integration_Gifty extends WC_Integration {
     }
 
     /**
-     * Migrate the plugin DB version on plugin updates
+     * Schedule plugin migrations
      * @return void
      */
-    public function handle_plugin_migration(): void {
-        // Get the current DB version
-        $current_db_version = (int) get_option( 'gifty_db_version', 0 );
-
-        // If the DB version is lower than the current plugin version, run the migration
-        if ( $current_db_version < self::DB_VERSION ) {
-            // Run migrations
-            ( new Migration_1( $this->client ) )->migrate();
-
-            // Update the DB version
-            update_option( 'gifty_db_version', self::DB_VERSION );
+    public function handle_plugin_migration(): void
+    {
+        // Check if there are migrations scheduled already
+        if ( as_has_scheduled_action( 'gifty_wc_execute_plugin_migration' ) ) {
+            return;
         }
+
+        // Get the current DB version
+        $current_db_version = (int)get_option( 'gifty_db_version', 0 );
+
+        // If the DB version is lower than the current plugin version, schedule the migration
+        if ( $current_db_version < self::DB_VERSION ) {
+            // Define migrations with their version
+            $migrations = [
+                Migration_1::DB_VERSION => Migration_1::class,
+            ];
+
+            // Schedule migrations until the DB version is updated
+            for ( $i = $current_db_version + 1; $i <= self::DB_VERSION; $i++ ) {
+                /** @var \Gifty\WooCommerce\Migration\MigrationInterface $migration */
+                $migration = $migrations[$i];
+                $migration::schedule();
+            }
+        }
+    }
+
+    /**
+     * Execute a plugin migration when called by the scheduler
+     * @param string $migration
+     * @param array $parameters
+     * @return void
+     */
+    public function execute_plugin_migration( string $migration, array $parameters = [] ): void
+    {
+        /** @var \Gifty\WooCommerce\Migration\MigrationInterface $migration */
+        $migration = new $migration( $this->client );
+        $migration->migrate( $parameters );
     }
 }
