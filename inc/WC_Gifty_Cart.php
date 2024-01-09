@@ -24,7 +24,12 @@ class WC_Gifty_Cart {
     private GiftyClient $client;
     private GiftCardManager $gift_card_manager;
 
-    public function __construct( GiftyClient $client, bool $form_visible_in_cart, bool $form_visible_in_checkout ) {
+    public function __construct(
+        GiftyClient $client,
+        bool $form_visible_in_cart,
+        bool $form_visible_in_checkout,
+        bool $apply_gift_card_through_coupon_input
+    ) {
         $this->client = $client;
         $this->gift_card_manager = new GiftCardManager();
 
@@ -43,6 +48,13 @@ class WC_Gifty_Cart {
         // Include the gift card form on the checkout page
         if ( ! ! apply_filters( 'gifty_wc_gc_form_visible_in_checkout', $form_visible_in_checkout === true ) ) {
             add_action( 'woocommerce_review_order_before_payment', [ $this, 'render_gift_card_form' ] );
+        }
+
+        // Register coupon input callbacks to apply gift card to session
+        if ( ! ! apply_filters( 'gifty_wc_gc_apply_through_coupon_input', $apply_gift_card_through_coupon_input === true ) ) {
+            add_action( 'wp_ajax_woocommerce_apply_coupon', [ $this, 'apply_gift_card_from_coupon_input' ], 1 );
+            add_action( 'wp_ajax_nopriv_apply_coupon', [ $this, 'apply_gift_card_from_coupon_input' ], 1 );
+            add_action( 'wc_ajax_apply_coupon', [ $this, 'apply_gift_card_from_coupon_input' ], 1 );
         }
 
         // Register Ajax callbacks to apply gift card to session
@@ -126,6 +138,70 @@ class WC_Gifty_Cart {
             '',
             WC_Gifty()->get_plugin_root_path() . '/templates/'
         );
+    }
+
+    /**
+     * This method hooks into the ajax coupon form and is fired
+     * when a user submits a voucher in the WC voucher input.
+     *
+     * We validate if the entered voucher is known as a gift card at Gifty.
+     * If this is the case the corresponding value is returned and applied
+     * as through our own gift card field
+     *
+     * @return void
+     */
+    public function apply_gift_card_from_coupon_input( )
+    {
+        check_ajax_referer( 'apply-coupon', 'security' );
+
+        // Normalize the gift card code
+        $gift_card_code = GiftCard::cleanCode( $_POST['coupon_code'] ?? '' );
+
+        if ( $gift_card_code === "" || strlen( $gift_card_code ) !== 16 ) {
+            return;
+        }
+
+        // Check if there is a WC session
+        if ( ! WC()->session ) {
+            return;
+        }
+
+        // Retrieve the gift card
+        $gift_card = $this->get_gift_card( $gift_card_code );
+
+        // Check if the gift card exists
+        if ( $gift_card instanceof WP_Error ) {
+            return;
+        }
+
+        // Check if this gift card code has already been applied
+        if ( $this->gift_card_manager->session_has_gift_card( $gift_card->getId() ) ) {
+            wc_add_notice( __( 'This gift card has already been applied', 'gifty-woocommerce' ), 'error' );
+            wc_print_notices();
+            wp_die();
+        }
+
+        // Check if the gift card is valid
+        if ( ! $gift_card->isRedeemable() ) {
+            wc_add_notice( __( 'This gift card has no available balance', 'gifty-woocommerce' ), 'error' );
+            wc_print_notices();
+            wp_die();
+        }
+
+        // Add the new gift card to the session
+        $this->gift_card_manager->upsert_gift_card_to_session(
+            new SessionGiftCard(
+                $gift_card->getId(),
+                $gift_card_code,
+                (float) $gift_card->getBalance() / 100,
+                0
+            )
+        );
+
+        // Add notice
+        wc_add_notice( __( 'Gift card applied successfully', 'gifty-woocommerce' ), 'success' );
+        wc_print_notices();
+        wp_die();
     }
 
     public function apply_gift_card(): void {
@@ -220,12 +296,31 @@ class WC_Gifty_Cart {
         WC()->session->__unset( 'gifty_original_cart_total' );
     }
 
+    /**
+     * Retrieve a gift card from the Gifty API
+     * This method adds a local caching layer to prevent unnecessary API calls.
+     * The caching layer is only used to validate if a gift card exists.
+     *
+     * @param string $code
+     *
+     * @return WP_Error|GiftCard
+     */
     private function get_gift_card( string $code ): WP_Error|GiftCard {
+        $cache_key = 'gifty_gift_card_get_error_' . md5( $code );
+        $cached_gift_card_error = get_transient( $cache_key );
+
+        if ( $cached_gift_card_error !== false ) {
+            return new WP_Error( 400, $cached_gift_card_error );
+        }
+
         try {
             $gift_card = $this->client
                 ->giftCards
                 ->get( $code );
         } catch ( ApiException $e ) {
+            // Cache the gift card existence for 15 minutes
+            set_transient( $cache_key, $e->getMessage(), 15 * MINUTE_IN_SECONDS );
+
             return new WP_Error( $e->getCode(), $e->getMessage() );
         }
 

@@ -58,6 +58,7 @@ final class WC_Integration_Gifty extends WC_Integration
             $this->client,
             $this->get_option( 'gifty_gc_field_in_cart' ) === 'yes',
             $this->get_option( 'gifty_gc_field_in_checkout' ) === 'yes',
+            $this->get_option( 'gifty_gc_apply_through_coupon_field' ) === 'yes',
         );
         $this->order = new WC_Gifty_Order( $this->client );
         $this->admin_refunds = new WC_Gifty_Refunds( $this->client );
@@ -102,6 +103,16 @@ final class WC_Integration_Gifty extends WC_Integration
                     'gifty-woocommerce'
                 ),
                 'default' => 'yes'
+            ],
+            'gifty_gc_apply_through_coupon_field' => [
+                'title' => __( 'Gift card through the coupon field', 'gifty-woocommerce' ),
+                'label' => __( 'Allow users to apply a gift card through the coupon field', 'gifty-woocommerce' ),
+                'type' => 'checkbox',
+                'description' => __(
+                    'Should the coupon field also accept gift cards.',
+                    'gifty-woocommerce'
+                ),
+                'default' => 'no'
             ],
             'gifty_wc_analytics_integration' => [
                 'title' => __( 'WooCommerce Analytics', 'gifty-woocommerce' ),

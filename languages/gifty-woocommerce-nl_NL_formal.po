@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gifty for WooCommerce\n"
-"POT-Creation-Date: 2023-11-28 16:02+0100\n"
-"PO-Revision-Date: 2023-11-28 16:05+0100\n"
+"POT-Creation-Date: 2024-01-09 15:48+0100\n"
+"PO-Revision-Date: 2024-01-09 15:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: gifty-woocommerce.php\n"
@@ -35,177 +35,7 @@ msgstr ""
 msgid "Settings"
 msgstr "Instellingen"
 
-#: inc/WC_Gifty_Cart.php:136 inc/WC_Gifty_Cart.php:201
-msgid "Invalid security token sent"
-msgstr "Ongeldig beveiligingstoken verzonden"
-
-#: inc/WC_Gifty_Cart.php:141
-msgid "Unable to apply gift card, session not found"
-msgstr "Cadeaubon kan niet worden toegepast, sessie niet gevonden"
-
-#: inc/WC_Gifty_Cart.php:150
-msgid "Please enter a valid gift card code"
-msgstr "Voer een geldige cadeauboncode in"
-
-#: inc/WC_Gifty_Cart.php:162
-msgid "This gift card does not exist"
-msgstr "Deze cadeaubon bestaat niet"
-
-#: inc/WC_Gifty_Cart.php:171 inc/compatibility/WC_Gift_Cards.php:66
-msgid "This gift card has already been applied"
-msgstr "Deze cadeaubon is al toegepast"
-
-#: inc/WC_Gifty_Cart.php:178 inc/compatibility/WC_Gift_Cards.php:71
-msgid "This gift card has no available balance"
-msgstr "Deze cadeaubon heeft geen saldo meer"
-
-#: inc/WC_Gifty_Cart.php:194
-msgid "Gift card applied successfully"
-msgstr "Cadeaubon succesvol toegepast"
-
-#: inc/WC_Gifty_Cart.php:206
-msgid "Unable to remove gift card, session not found"
-msgstr "Kan cadeaubon niet verwijderen, sessie niet gevonden"
-
-#: inc/WC_Gifty_Cart.php:217
-msgid "Gift card removed successfully"
-msgstr "Cadeaubon succesvol verwijderd"
-
-#: inc/WC_Gifty_Order.php:83
-msgid ""
-"The balance of one or more gift cards has changed, please review the gift "
-"cards before placing the order."
-msgstr ""
-"Het saldo van een of meer cadeaubonnen is gewijzigd, controleer de "
-"cadeaubonnen voordat u de bestelling plaatst."
-
-#: inc/WC_Gifty_Order.php:143
-#, php-format
-msgid "Gift card %s redeemed for %s (%s)"
-msgstr "Cadeaubon %s ingewisseld voor %s (%s)"
-
-#: inc/WC_Gifty_Order.php:155
-#, php-format
-msgid "Error while redeeming gift cards. Error: %s"
-msgstr "Fout bij het inwisselen van cadeaubonnen. Fout: %s"
-
-#: inc/WC_Gifty_Order.php:173 inc/WC_Gifty_Order.php:239
-#, php-format
-msgid "Gift card %s released for %s (%s)"
-msgstr "Cadeaubon %s vrijgegeven voor %s (%s)"
-
-#: inc/WC_Gifty_Order.php:184 inc/WC_Gifty_Order.php:250
-#, php-format
-msgid "Gift card %s could not be released for %s (%s). Error: "
-msgstr "Cadeaubon %s kon niet worden vrijgegeven voor  %s (%s). Fout: "
-
-#: inc/WC_Gifty_Order.php:278
-#, php-format
-msgid "Gift card %s was already released for %s (%s). Payment not applied."
-msgstr "Cadeaubon %s is al vrijgegeven voor %s (%s). Betaling niet toegepast."
-
-#: inc/WC_Gifty_Order.php:304
-#, php-format
-msgid "Gift card %s captured for %s (%s)"
-msgstr "Cadeaubon %s geboekt voor %s (%s)"
-
-#: inc/WC_Gifty_Order.php:315
-#, php-format
-msgid "Gift card %s could not be captured for %s (%s). Error: "
-msgstr "Cadeaubon %s kon niet worden geboekt voor %s (%s). Fout: "
-
-#: inc/WC_Gifty_Order.php:376 templates/admin/order/gift-card-payment.php:59
-#: templates/admin/order/gift-card-totals.php:21
-#: templates/cart/gift-card-totals.php:36
-#: templates/cart/gift-card-totals.php:42
-msgid "Gift Card"
-msgstr "Cadeaubon"
-
-#: inc/WC_Gifty_Order.php:453 inc/admin/WC_Gifty_Refunds.php:260
-#, php-format
-msgid "Gifty: %s"
-msgstr "Gifty: %s"
-
-#: inc/WC_Integration_Gifty.php:28
-msgid "Gifty"
-msgstr "Gifty"
-
-#: inc/WC_Integration_Gifty.php:29
-msgid "Accept Gifty gift cards in your WooCommerce shop."
-msgstr "Accepteer Gifty cadeaubonnen in uw WooCommerce-shop."
-
-#: inc/WC_Integration_Gifty.php:68
-msgid "API Key"
-msgstr "API sleutel"
-
-#: inc/WC_Integration_Gifty.php:71
-msgid ""
-"Enter your API Key. You can manage API-keys in your Gifty dashboard under "
-"the Developer options."
-msgstr ""
-"Voer uw API-sleutel in. U kunt API-sleutels beheren in uw Gifty-dashboard op "
-"de instellingenpagina voor ontwikkelaars."
-
-#: inc/WC_Integration_Gifty.php:77
-msgid "Gift Card field in cart"
-msgstr "Cadeaubon-veld in winkelwagen"
-
-#: inc/WC_Integration_Gifty.php:78
-msgid "Show gift card field on the cart page"
-msgstr "Toon het cadeaubon-veld in de winkelwagen"
-
-#: inc/WC_Integration_Gifty.php:81
-msgid "Should the gift card field be visible on the cart page."
-msgstr "Moet het cadeaubon-veld zichtbaar zijn in de winkelwagen."
-
-#: inc/WC_Integration_Gifty.php:87
-msgid "Gift Card field in checkout"
-msgstr "Cadeaubon-veld tijdens afrekenen"
-
-#: inc/WC_Integration_Gifty.php:88
-msgid "Show gift card field on the checkout page"
-msgstr "Toon het cadeaubon-veld tijdens het afrekenen"
-
-#: inc/WC_Integration_Gifty.php:91
-msgid "Should the gift card field be visible on the checkout page."
-msgstr "Moet het cadeaubon-veld zichtbaar zijn tijdens het afrekenen."
-
-#: inc/WC_Integration_Gifty.php:97
-msgid "WooCommerce Analytics"
-msgstr "WooCommerce Analytics"
-
-#: inc/WC_Integration_Gifty.php:98
-msgid "Enable calculation corrections"
-msgstr "Berekeningscorrecties inschakelen"
-
-#: inc/WC_Integration_Gifty.php:101
-msgid ""
-"Apply corrections on WooCommerce Analytics data for correct tax and revenue "
-"reporting."
-msgstr ""
-"Pas correcties toe op WooCommerce Analytics-gegevens voor correcte "
-"belasting- en inkomstenrapportage."
-
-#: inc/WC_Integration_Gifty.php:107
-msgid "Compatibility fixes"
-msgstr "Compatibiliteit-correcties"
-
-#: inc/WC_Integration_Gifty.php:108
-msgid "Enable compatibility fixes with other plugins"
-msgstr "Compatibiliteit-correcties met andere plug-ins inschakelen"
-
-#: inc/WC_Integration_Gifty.php:111
-msgid ""
-"Enable fixes and improvements to work better with other WordPress plugins."
-msgstr ""
-"Schakel correcties en verbeteringen in voor een betere samenwerking met "
-"andere WordPress-plug-ins."
-
-#: inc/WC_Integration_Gifty.php:132
-msgid "The API-key is invalid."
-msgstr "De API-sleutel is ongeldig."
-
-#: inc/admin/WC_Gifty_Refunds.php:110
+#: inc/Admin/WC_Gifty_Refunds.php:116
 #, php-format
 msgid ""
 "Gift card %s has already been captured, so it cannot be refunded. Process "
@@ -214,7 +44,7 @@ msgstr ""
 "Cadeaubon %s is al geboekt, dus kan niet worden terugbetaald. Verwerk deze "
 "terugbetaling handmatig."
 
-#: inc/admin/WC_Gifty_Refunds.php:123
+#: inc/Admin/WC_Gifty_Refunds.php:129
 #, php-format
 msgid ""
 "It is only supported to refund the full gift card payment at once. The "
@@ -223,19 +53,204 @@ msgstr ""
 "Het wordt alleen ondersteund om de volledige betaling van de cadeaubon in "
 "één keer terug te betalen. De terugbetaling moet %s zijn."
 
-#: inc/admin/WC_Gifty_Refunds.php:135
+#: inc/Admin/WC_Gifty_Refunds.php:141
 #, php-format
 msgid "Gift card %s has already been captured, so it cannot be refunded."
 msgstr "Cadeaubon %s is al geboekt, dus kan niet worden terugbetaald."
 
-#: inc/admin/WC_Gifty_Refunds.php:144
+#: inc/Admin/WC_Gifty_Refunds.php:149
 msgid "Invalid refund amount"
 msgstr "Ongeldig terugbetalingsbedrag"
 
-#: inc/admin/WC_Gifty_Refunds.php:182
+#: inc/Admin/WC_Gifty_Refunds.php:187
 #, php-format
 msgid "Refunded %s to gift card %s."
 msgstr "Er is %s terugbetaald op cadeaubon %s."
+
+#: inc/Admin/WC_Gifty_Refunds.php:264 inc/WC_Gifty_Order.php:457
+#, php-format
+msgid "Gifty: %s"
+msgstr "Gifty: %s"
+
+#: inc/Compatibility/WC_Gift_Cards.php:68 inc/WC_Gifty_Cart.php:179
+#: inc/WC_Gifty_Cart.php:245
+msgid "This gift card has already been applied"
+msgstr "Deze cadeaubon is al toegepast"
+
+#: inc/Compatibility/WC_Gift_Cards.php:76 inc/WC_Gifty_Cart.php:186
+#: inc/WC_Gifty_Cart.php:252
+msgid "This gift card has no available balance"
+msgstr "Deze cadeaubon heeft geen saldo meer"
+
+#: inc/WC_Gifty_Cart.php:202 inc/WC_Gifty_Cart.php:268
+msgid "Gift card applied successfully"
+msgstr "Cadeaubon succesvol toegepast"
+
+#: inc/WC_Gifty_Cart.php:210 inc/WC_Gifty_Cart.php:275
+msgid "Invalid security token sent"
+msgstr "Ongeldig beveiligingstoken verzonden"
+
+#: inc/WC_Gifty_Cart.php:215
+msgid "Unable to apply gift card, session not found"
+msgstr "Cadeaubon kan niet worden toegepast, sessie niet gevonden"
+
+#: inc/WC_Gifty_Cart.php:224
+msgid "Please enter a valid gift card code"
+msgstr "Voer een geldige cadeauboncode in"
+
+#: inc/WC_Gifty_Cart.php:236
+msgid "This gift card does not exist"
+msgstr "Deze cadeaubon bestaat niet"
+
+#: inc/WC_Gifty_Cart.php:280
+msgid "Unable to remove gift card, session not found"
+msgstr "Kan cadeaubon niet verwijderen, sessie niet gevonden"
+
+#: inc/WC_Gifty_Cart.php:291
+msgid "Gift card removed successfully"
+msgstr "Cadeaubon succesvol verwijderd"
+
+#: inc/WC_Gifty_Order.php:86
+msgid ""
+"The balance of one or more gift cards has changed, please review the gift "
+"cards before placing the order."
+msgstr ""
+"Het saldo van een of meer cadeaubonnen is gewijzigd, controleer de "
+"cadeaubonnen voordat u de bestelling plaatst."
+
+#: inc/WC_Gifty_Order.php:147
+#, php-format
+msgid "Gift card %s redeemed for %s (%s)"
+msgstr "Cadeaubon %s ingewisseld voor %s (%s)"
+
+#: inc/WC_Gifty_Order.php:159
+#, php-format
+msgid "Error while redeeming gift cards. Error: %s"
+msgstr "Fout bij het inwisselen van cadeaubonnen. Fout: %s"
+
+#: inc/WC_Gifty_Order.php:177 inc/WC_Gifty_Order.php:244
+#, php-format
+msgid "Gift card %s released for %s (%s)"
+msgstr "Cadeaubon %s vrijgegeven voor %s (%s)"
+
+#: inc/WC_Gifty_Order.php:188 inc/WC_Gifty_Order.php:255
+#, php-format
+msgid "Gift card %s could not be released for %s (%s). Error: "
+msgstr "Cadeaubon %s kon niet worden vrijgegeven voor  %s (%s). Fout: "
+
+#: inc/WC_Gifty_Order.php:283
+#, php-format
+msgid "Gift card %s was already released for %s (%s). Payment not applied."
+msgstr "Cadeaubon %s is al vrijgegeven voor %s (%s). Betaling niet toegepast."
+
+#: inc/WC_Gifty_Order.php:309
+#, php-format
+msgid "Gift card %s captured for %s (%s)"
+msgstr "Cadeaubon %s geboekt voor %s (%s)"
+
+#: inc/WC_Gifty_Order.php:320
+#, php-format
+msgid "Gift card %s could not be captured for %s (%s). Error: "
+msgstr "Cadeaubon %s kon niet worden geboekt voor %s (%s). Fout: "
+
+#: inc/WC_Gifty_Order.php:380 templates/admin/order/gift-card-payment.php:59
+#: templates/admin/order/gift-card-totals.php:21
+#: templates/cart/gift-card-totals.php:36
+#: templates/cart/gift-card-totals.php:42
+msgid "Gift Card"
+msgstr "Cadeaubon"
+
+#: inc/WC_Integration_Gifty.php:33
+msgid "Gifty"
+msgstr "Gifty"
+
+#: inc/WC_Integration_Gifty.php:34
+msgid "Accept Gifty gift cards in your WooCommerce shop."
+msgstr "Accepteer Gifty cadeaubonnen in uw WooCommerce-shop."
+
+#: inc/WC_Integration_Gifty.php:79
+msgid "API Key"
+msgstr "API sleutel"
+
+#: inc/WC_Integration_Gifty.php:82
+msgid ""
+"Enter your API Key. You can manage API-keys in your Gifty dashboard under "
+"the Developer options."
+msgstr ""
+"Voer uw API-sleutel in. U kunt API-sleutels beheren in uw Gifty-dashboard op "
+"de instellingenpagina voor ontwikkelaars."
+
+#: inc/WC_Integration_Gifty.php:88
+msgid "Gift Card field in cart"
+msgstr "Cadeaubon-veld in winkelwagen"
+
+#: inc/WC_Integration_Gifty.php:89
+msgid "Show gift card field on the cart page"
+msgstr "Toon het cadeaubon-veld in de winkelwagen"
+
+#: inc/WC_Integration_Gifty.php:92
+msgid "Should the gift card field be visible on the cart page."
+msgstr "Moet het cadeaubon-veld zichtbaar zijn in de winkelwagen."
+
+#: inc/WC_Integration_Gifty.php:98
+msgid "Gift Card field in checkout"
+msgstr "Cadeaubon-veld tijdens afrekenen"
+
+#: inc/WC_Integration_Gifty.php:99
+msgid "Show gift card field on the checkout page"
+msgstr "Toon het cadeaubon-veld tijdens het afrekenen"
+
+#: inc/WC_Integration_Gifty.php:102
+msgid "Should the gift card field be visible on the checkout page."
+msgstr "Moet het cadeaubon-veld zichtbaar zijn tijdens het afrekenen."
+
+#: inc/WC_Integration_Gifty.php:108
+msgid "Gift card through the coupon field"
+msgstr "Cadeaubon via het kortingscode-veld"
+
+#: inc/WC_Integration_Gifty.php:109
+msgid "Allow users to apply a gift card through the coupon field"
+msgstr ""
+"Sta gebruikers toe een cadeaubon toe te passen via het kortingscode-veld"
+
+#: inc/WC_Integration_Gifty.php:112
+msgid "Should the coupon field also accept gift cards."
+msgstr "Moet het kortingscode-veld ook cadeaubonnen accepteren."
+
+#: inc/WC_Integration_Gifty.php:118
+msgid "WooCommerce Analytics"
+msgstr "WooCommerce Analytics"
+
+#: inc/WC_Integration_Gifty.php:119
+msgid "Enable calculation corrections"
+msgstr "Berekeningscorrecties inschakelen"
+
+#: inc/WC_Integration_Gifty.php:122
+msgid ""
+"Apply corrections on WooCommerce Analytics data for correct tax and revenue "
+"reporting."
+msgstr ""
+"Pas correcties toe op WooCommerce Analytics-gegevens voor correcte "
+"belasting- en inkomstenrapportage."
+
+#: inc/WC_Integration_Gifty.php:128
+msgid "Compatibility fixes"
+msgstr "Compatibiliteit-correcties"
+
+#: inc/WC_Integration_Gifty.php:129
+msgid "Enable compatibility fixes with other plugins"
+msgstr "Compatibiliteit-correcties met andere plug-ins inschakelen"
+
+#: inc/WC_Integration_Gifty.php:132
+msgid ""
+"Enable fixes and improvements to work better with other WordPress plugins."
+msgstr ""
+"Schakel correcties en verbeteringen in voor een betere samenwerking met "
+"andere WordPress-plug-ins."
+
+#: inc/WC_Integration_Gifty.php:154
+msgid "The API-key is invalid."
+msgstr "De API-sleutel is ongeldig."
 
 #: templates/admin/order/gift-card-payment.php:12
 msgid "Order Total"
