@@ -2,9 +2,9 @@
 Contributors:
 Tags: gifty, cadeaubon, cadeaukaart, woocommerce, gift card, gift cards, voucher
 Text Domain: gifty-woocommerce
-Requires at least: 5.4
+Requires at least: 6.2
 Tested up to: 6.4
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -32,6 +32,11 @@ No, this plugin has the purpose of accepting Gifty gift cards in your WooCommerc
 We're more than happy to help you out! You can contact us through our [contact page](https://gifty.nl/contact).
 
 == Changelog ==
+
+= 2.0.4 =
+* Migrations are now processed in the background using Action Scheduler, improving performance for stores with a high volume of orders.
+* Added an option in plugin settings to allow gift cards to be applied through the coupon field.
+* Front-end fields are now conditionally displayed only when a valid API key is active.
 
 = 2.0.3 =
 * Bugfix: path names did not match the namespace capitalization, causing issues on Linux servers
