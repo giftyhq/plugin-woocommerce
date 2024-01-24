@@ -1,4 +1,5 @@
 import './checkout.scss';
+import blockUI from 'jquery-blockui';
 
 ( function ( $, document ) {
 	class giftyGiftCards {
@@ -259,4 +260,4 @@ import './checkout.scss';
 
 	// Initialize giftyGiftCards
 	new giftyGiftCards();
-} )( jQuery, document );
+} )( jQuery, document, blockUI );
