@@ -4,7 +4,7 @@
 	"type": "project",
 	"license": "GPL-2.0-or-later",
 	"scripts": {
-    "test": "phpunit",
+		"test": "phpunit",
 		"phpcs": "vendor/bin/phpcs inc --standard=NeutronStandard",
 		"phpcbf": "vendor/bin/phpcbf inc --standard=NeutronStandard",
 		"cilocal": "act -W '.github/workflows/ci.yml'",
