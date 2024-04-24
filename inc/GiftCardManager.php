@@ -62,7 +62,9 @@ class GiftCardManager {
         }, $gift_cards );
 
         // Update WooCommerce order meta
-        wc_update_order_item_meta( $order_id, self::META_KEY, $gift_cards_data );
+        $order = wc_get_order( $order_id );
+		$order->update_meta_data( self::META_KEY, $gift_cards_data );
+		$order->save();
     }
 
     // Saves gift card data from the session to the order meta
@@ -90,7 +92,8 @@ class GiftCardManager {
      * @throws \Exception
      */
     public function get_gift_cards_from_order( int $order_id ): array {
-        $gift_cards_data = wc_get_order_item_meta( $order_id, self::META_KEY, true );
+		$order = wc_get_order( $order_id );
+		$gift_cards_data = $order->get_meta( self::META_KEY );
 
         if ( ! $gift_cards_data ) {
             return [];
