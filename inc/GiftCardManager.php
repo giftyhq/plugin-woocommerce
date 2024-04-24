@@ -93,6 +93,11 @@ class GiftCardManager {
      */
     public function get_gift_cards_from_order( int $order_id ): array {
 		$order = wc_get_order( $order_id );
+
+        if( ! $order ) {
+            return [];
+        }
+
 		$gift_cards_data = $order->get_meta( self::META_KEY );
 
         if ( ! $gift_cards_data ) {
