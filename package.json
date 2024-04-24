@@ -15,7 +15,7 @@
 		"test:unit": "wp-scripts test-unit-js"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.18.0"
+		"@wordpress/scripts": "^27.7.0"
 	},
 	"dependencies": {
 		"jquery-blockui": "^2.7.0"
