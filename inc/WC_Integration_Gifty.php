@@ -9,6 +9,7 @@ use Gifty\WooCommerce\Admin\WC_Gifty_Analytics;
 use Gifty\WooCommerce\Admin\WC_Gifty_Refunds;
 use Gifty\WooCommerce\Compatibility\CompatibilityRegister;
 use Gifty\WooCommerce\Migration\Migration_1;
+use Gifty\WooCommerce\Migration\Migration_2;
 use WC_Admin_Settings;
 use WC_Integration;
 
@@ -18,7 +19,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 final class WC_Integration_Gifty extends WC_Integration
 {
-    const DB_VERSION = 1;
+    const DB_VERSION = 2;
 
     public GiftyClient         $client;
     private WC_Gifty_Cart      $cart;
@@ -176,6 +177,7 @@ final class WC_Integration_Gifty extends WC_Integration
             // Define migrations with their version
             $migrations = [
                 Migration_1::DB_VERSION => Migration_1::class,
+	            Migration_2::DB_VERSION => Migration_2::class,
             ];
 
             // Schedule migrations until the DB version is updated
